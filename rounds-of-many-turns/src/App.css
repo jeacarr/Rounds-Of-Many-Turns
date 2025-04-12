@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #ca4444;
 }
+
+
+/* Character Card */
+.character-card .MuiGrid-root:not(.MuiGrid-container) {
+  max-height: 3rem;
+}
+
+.character-card .MuiGrid-root:not(.MuiGrid-container) span {
+  height: 3rem;
+  line-height: 3rem;
+}
