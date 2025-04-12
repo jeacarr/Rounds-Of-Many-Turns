@@ -6,7 +6,7 @@ export enum PlayerType {
     Enemy
 }
 
-interface ChacterConract {
+interface ChacterContract {
     id: number;
     name: string;
     hp: number;
@@ -17,7 +17,7 @@ interface ChacterConract {
     immunity: string; 
 }
 
-export const CharacterRecord = Record<ChacterConract>({
+export const CharacterRecord = Record<ChacterContract>({
     id: 0,
     name: "",
     hp: 0,
@@ -28,5 +28,5 @@ export const CharacterRecord = Record<ChacterConract>({
     immunity: ""
 })
 
-export type Character = RecordOf<ChacterConract>;
+export type Character = RecordOf<ChacterContract>;
 
