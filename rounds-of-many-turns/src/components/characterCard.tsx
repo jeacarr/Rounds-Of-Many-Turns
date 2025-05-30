@@ -25,35 +25,35 @@ const CharacterCard: React.FC<Props> = ({character}) => {
               <img style={{height: "100%", borderRadius: "50%" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6H0D0tW9w98LYOwE1erdcD7CCgS1DEN8PLw&s"/>
           </Grid>
           <Grid size={"auto"}>
-            <span>Ylfa Snorgelsson</span>
+            <span>{character.name}</span>
           </Grid>
           <Grid size={"auto"}>
           <IconButton color={red[500]} aria-label="delete">
             <RemoveIcon />
           </IconButton>
-            <span style={{margin: "0 0.75rem", fontWeight: "bold"}}>HP: {42}</span>
+            <span style={{margin: "0 0.75rem", fontWeight: "bold"}}>HP: {character.hp}</span>
             <Fab size="small" color="primary" aria-label="add">
               <AddIcon />
             </Fab>
           </Grid>
           <Grid size={"auto"}>
-            <span style={{fontWeight: "bold"}}>AC {16}</span>
+            <span style={{fontWeight: "bold"}}>AC {character.ac}</span>
           </Grid>
           <Grid size={"auto"}>
             <span>Cond: </span>
-            <span style={{fontWeight: "bold"}}>{"Prone, Blind"}</span>
+            <span style={{fontWeight: "bold"}}>{character.conditions}</span>
           </Grid>
           <Grid size={"auto"}>
-          <Checkbox  />
+          <Checkbox checked={character.concentration}/>
             <span>Concentration</span>
           </Grid>
           <Grid size={"auto"}>
             <span>Resist: </span>
-            <span style={{fontWeight: "bold"}}>{"Bludging, Peircing"}</span>
+            <span style={{fontWeight: "bold"}}>{character.resistance}</span>
           </Grid>
           <Grid size={"auto"}>
             <span>Immune: </span>
-            <span style={{fontWeight: "bold"}}>{"Fire"}</span>
+            <span style={{fontWeight: "bold"}}>{character.immunity}</span>
           </Grid>
         </Grid>
       </Box>
