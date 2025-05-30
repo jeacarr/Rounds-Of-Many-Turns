@@ -7,11 +7,11 @@ const App: React.FC= () => {
     const [data, setData] = useState(seededCharacters)
     return (
         <>
-        <div>Hello World</div>
-        {data.map((character) => {
+        <CharacterCard character={ data[0] } />
+        {/* {data.map((character) => {
             return (<CharacterCard character={ character } />)
             
-        })}
+        })} */}
         </>
     )
 };

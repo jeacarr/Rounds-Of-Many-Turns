@@ -6,9 +6,10 @@ export const seededCharacters = [{
     hp: 10,
     ac: 13,
     type: PlayerType.Player,
-    conditions: "",
-    resistance: "",
-    immunity: ""
+    conditions: "Prone, Blind",
+    resistance: "Bludening, Peircing",
+    immunity: "Fire",
+    concentration: true
 },
 {
     id: 2,
@@ -18,7 +19,8 @@ export const seededCharacters = [{
     type: PlayerType.Friendly,
     conditions: "",
     resistance: "",
-    immunity: ""
+    immunity: "",
+    concentration: false
 },
 {
     id: 3,
@@ -28,5 +30,6 @@ export const seededCharacters = [{
     type: PlayerType.Enemy,
     conditions: "",
     resistance: "",
-    immunity: ""
+    immunity: "",
+    concentration: false
 }] as Character[]  ;
