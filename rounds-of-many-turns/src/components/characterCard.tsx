@@ -7,10 +7,15 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
+import { Character } from '../data/character/Character';
 
 
+// Interface for props state
+interface Props {
+  character: Character;
+}
 
-export default function characterCard() {
+const CharacterCard: React.FC<Props> = ({character}) => {
   return (
     <>
       <div class="character-card" style={{filter: "drop-shadow(5px 5px 10px #000000)", background: "rgba(0,255, 0, 0.2)", borderRadius: "0.5rem"}}>
@@ -49,7 +54,6 @@ export default function characterCard() {
           <Grid size={"auto"}>
             <span>Immune: </span>
             <span style={{fontWeight: "bold"}}>{"Fire"}</span>
-            
           </Grid>
         </Grid>
       </Box>
@@ -57,3 +61,5 @@ export default function characterCard() {
     </>
   )
 }
+
+export default CharacterCard;
