@@ -1,6 +1,8 @@
 import { Character, PlayerType } from "./character/Character"
 
-export const seededCharacters = [{
+
+export const seededCharacters: Map<number,Character> = new Map<number,Character>([
+[1, {
     id: 1,
     name: "Princess Rosamund du Prix",
     hp: 10,
@@ -10,8 +12,8 @@ export const seededCharacters = [{
     resistance: "Bludening, Peircing",
     immunity: "Fire",
     concentration: true
-},
-{
+} as Character],
+[2, {
     id: 2,
     name: "Prince Gerard of Greenleigh",
     hp: 0,
@@ -21,8 +23,8 @@ export const seededCharacters = [{
     resistance: "",
     immunity: "",
     concentration: false
-},
-{
+} as Character],
+[3, {
     id: 3,
     name: "Puss In Boots",
     hp: 100,
@@ -32,4 +34,7 @@ export const seededCharacters = [{
     resistance: "",
     immunity: "",
     concentration: false
-}] as Character[]  ;
+} as Character],
+
+]);
+
