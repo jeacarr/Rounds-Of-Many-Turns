@@ -13,9 +13,10 @@ import { Character } from '../data/character/Character';
 // Interface for props state
 interface Props {
   character: Character;
+  update: Function;
 }
 
-const CharacterCard: React.FC<Props> = ({character}) => {
+const CharacterCard: React.FC<Props> = ({character, update}) => {
   return (
     <>
       <div class="character-card" style={{filter: "drop-shadow(5px 5px 10px #000000)", background: "rgba(0,255, 0, 0.2)", borderRadius: "0.5rem"}}>

@@ -1,7 +1,8 @@
 import { Character, PlayerType } from "./character/Character"
+import { Map } from "immutable";
 
 
-export const seededCharacters: Map<number,Character> = new Map<number,Character>([
+export const seededCharacters: Map<number,Character> =  Map<number,Character>([
 [1, {
     id: 1,
     name: "Princess Rosamund du Prix",
