@@ -16,6 +16,7 @@ interface ChacterContract {
     resistance: string;
     immunity: string; 
     concentration: boolean;
+    image: string;
 }
 
 export const CharacterRecord = Record<ChacterContract>({
@@ -27,7 +28,8 @@ export const CharacterRecord = Record<ChacterContract>({
     conditions: "",
     resistance: "",
     immunity: "",
-    concentration: false
+    concentration: false,
+    image: ""
 })
 
 export type Character = RecordOf<ChacterContract>;

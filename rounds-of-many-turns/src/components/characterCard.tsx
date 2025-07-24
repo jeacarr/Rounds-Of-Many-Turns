@@ -4,8 +4,8 @@ import Grid from '@mui/material/Grid';
 import Checkbox from '@mui/material/Checkbox';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import { Typography } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
-import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import { Character } from '../data/character/Character';
 
@@ -19,45 +19,55 @@ interface Props {
 const CharacterCard: React.FC<Props> = ({character, update}) => {
   return (
     <>
-      <div class="character-card" style={{filter: "drop-shadow(5px 5px 10px #000000)", background: "rgba(0,255, 0, 0.2)", borderRadius: "0.5rem"}}>
-      <Box  component="section" sx={{alignItems: "center", justifyContent: "flex-start", p: 2 }}>
-        <Grid container spacing={2}>
-          <Grid size={1}>
-              <img style={{height: "100%", borderRadius: "50%" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6H0D0tW9w98LYOwE1erdcD7CCgS1DEN8PLw&s"/>
+      <div class="character-card" style={{filter: "drop-shadow(5px 5px 10px #000000)", width: "100%", background: "rgba(0,255, 0, 0.2)", borderRadius: "0.5rem"}}>
+        <Box  component="section" sx={{alignItems: "center", justifyContent: "flex-start", p: 2, }}>
+          <Grid container spacing={2} sx={{alignItems: "center"}}>
+            <Grid >
+                <div style={{display: "flex", justifyContent: "center", width: "5rem", height: "5rem", overflow: "hidden", borderRadius: "50%"}}>
+                    <img style={{ minWidth: "100%", minHeight: "100%", objectPosition: "center center", objectFit: "cover"}} src={character.image}/>
+                </div>
+              </Grid>
+            <Grid container spacing={2} size="grow" sx={{alignItems: "center"}}>
+              <Grid size={"auto"}>
+                <Typography variant="h5">{character.name}</Typography>
+              </Grid>
+              <Grid size={"auto"}>
+                <Fab size="small" color="error" aria-label="add">
+                  <RemoveIcon />
+                </Fab>
+                <Typography sx={{display: "inline", margin: "0 0.75rem", fontWeight: "bold"}}>HP: {character.hp}</Typography>
+                <Fab size="small" color="success" aria-label="add">
+                  <AddIcon />
+                </Fab>
+              </Grid>
+              <Grid size={"auto"}>
+                <Typography style={{fontWeight: "bold"}}>AC {character.ac}</Typography>
+              </Grid>
+              {character.conditions == "" ? "" :
+                <Grid size={"auto"}>
+                  <Typography style={{display: "inline"}}>Cond: </Typography>
+                  <Typography style={{fontWeight: "bold", display: "inline"}}>{character.conditions}</Typography>
+                </Grid>
+              }
+              <Grid container sx={{alignItems: "center"}}size={"auto"} spacing={0}>
+                <Checkbox checked={character.concentration}/>
+                <Typography style={{display: "inline"}}>Concentration</Typography>
+              </Grid>
+              {character.resistance == "" ? "" :
+                <Grid size={"auto"}>
+                  <Typography style={{display: "inline"}}>Resist: </Typography>
+                  <Typography style={{fontWeight: "bold", display: "inline"}}>{character.resistance}</Typography>
+                </Grid>
+              } 
+              {character.immunity == "" ? "" :
+                <Grid size={"auto"}>
+                  <Typography style={{display: "inline"}}>Immune: </Typography>
+                  <Typography style={{fontWeight: "bold", display: "inline"}}>{character.immunity}</Typography>
+                </Grid>
+              }
+            </Grid>
           </Grid>
-          <Grid size={"auto"}>
-            <span>{character.name}</span>
-          </Grid>
-          <Grid size={"auto"}>
-          <IconButton color={red[500]} aria-label="delete">
-            <RemoveIcon />
-          </IconButton>
-            <span style={{margin: "0 0.75rem", fontWeight: "bold"}}>HP: {character.hp}</span>
-            <Fab size="small" color="primary" aria-label="add">
-              <AddIcon />
-            </Fab>
-          </Grid>
-          <Grid size={"auto"}>
-            <span style={{fontWeight: "bold"}}>AC {character.ac}</span>
-          </Grid>
-          <Grid size={"auto"}>
-            <span>Cond: </span>
-            <span style={{fontWeight: "bold"}}>{character.conditions}</span>
-          </Grid>
-          <Grid size={"auto"}>
-          <Checkbox checked={character.concentration}/>
-            <span>Concentration</span>
-          </Grid>
-          <Grid size={"auto"}>
-            <span>Resist: </span>
-            <span style={{fontWeight: "bold"}}>{character.resistance}</span>
-          </Grid>
-          <Grid size={"auto"}>
-            <span>Immune: </span>
-            <span style={{fontWeight: "bold"}}>{character.immunity}</span>
-          </Grid>
-        </Grid>
-      </Box>
+        </Box>
       </div>
     </>
   )

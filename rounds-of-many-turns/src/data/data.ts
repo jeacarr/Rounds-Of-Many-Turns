@@ -12,7 +12,8 @@ export const seededCharacters: Map<number,Character> =  Map<number,Character>([
     conditions: "Prone, Blind",
     resistance: "Bludening, Peircing",
     immunity: "Fire",
-    concentration: true
+    concentration: true,
+    image: "https://i.pinimg.com/736x/bf/6e/5c/bf6e5cf14b3e179e09d9bceff875a7f5.jpg"
 } as Character],
 [2, {
     id: 2,
@@ -21,9 +22,10 @@ export const seededCharacters: Map<number,Character> =  Map<number,Character>([
     ac: 20,
     type: PlayerType.Friendly,
     conditions: "",
-    resistance: "",
+    resistance: "ice",
     immunity: "",
-    concentration: false
+    concentration: false,
+    image: "https://static.wikia.nocookie.net/fantasy-high/images/6/67/GerardOfGreenleigh3.png/revision/latest/scale-to-width/360?cb=20230329234957"
 } as Character],
 [3, {
     id: 3,
@@ -33,8 +35,9 @@ export const seededCharacters: Map<number,Character> =  Map<number,Character>([
     type: PlayerType.Enemy,
     conditions: "",
     resistance: "",
-    immunity: "",
-    concentration: false
+    immunity: "fire",
+    concentration: false,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRjhhLA5isWP3WdJCqfMJOpdIU0htmI84yrw&s"
 } as Character],
 
 ]);
