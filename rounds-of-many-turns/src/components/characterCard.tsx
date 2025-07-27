@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Checkbox from '@mui/material/Checkbox';
@@ -18,8 +18,6 @@ interface Props {
   update: Function;
 }
 
-
-
 const CharacterCard: React.FC<Props> = ({character, update}) => {
   //DND kit consts
   const {
@@ -35,6 +33,7 @@ const CharacterCard: React.FC<Props> = ({character, update}) => {
     transition,
   };
 
+
   return (
     <>
       <div key={character.id} id={character.id + ""} ref={setNodeRef}  {...attributes} className="character-card" style={{...dragStyle, background: "#174a17", borderRadius: "0.5rem", margin: ".25rem"}}>
@@ -43,7 +42,6 @@ const CharacterCard: React.FC<Props> = ({character, update}) => {
             <div {...listeners} ref={setActivatorNodeRef} style={{padding:".5rem"}}>
               <MenuIcon></MenuIcon>
             </div>
-            
             <Grid >
                 <div style={{display: "flex", justifyContent: "center", width: "5rem", height: "5rem", overflow: "hidden", borderRadius: "50%"}}>
                     <img style={{ minWidth: "100%", minHeight: "100%", objectPosition: "center center", objectFit: "cover"}} src={character.image}/>
@@ -54,11 +52,11 @@ const CharacterCard: React.FC<Props> = ({character, update}) => {
                 <Typography variant="h5">{character.name}</Typography>
               </Grid>
               <Grid size={"auto"}>
-                <Fab size="small" color="error" aria-label="add">
+                <Fab size="small" color="error" aria-label="add" onClick={() => update(character.id, "hp", character.hp - 1)}>
                   <RemoveIcon />
                 </Fab>
                 <Typography sx={{display: "inline", margin: "0 0.75rem", fontWeight: "bold"}}>HP: {character.hp}</Typography>
-                <Fab size="small" color="success" aria-label="add">
+                <Fab size="small" color="success" aria-label="add" onClick={() => update(character.id, "hp", character.hp + 1)}>
                   <AddIcon />
                 </Fab>
               </Grid>
@@ -72,7 +70,7 @@ const CharacterCard: React.FC<Props> = ({character, update}) => {
                 </Grid>
               }
               <Grid container sx={{alignItems: "center"}}size={"auto"} spacing={0}>
-                <Checkbox checked={character.concentration}/>
+                <Checkbox onClick={() => update(character.id, "concentration", !character.concentration)} checked={character.concentration}/>
                 <Typography style={{display: "inline"}}>Concentration</Typography>
               </Grid>
               {character.resistance == "" ? "" :
