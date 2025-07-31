@@ -1,5 +1,13 @@
 import { Record, RecordOf } from "immutable";
 
+export enum DialogBoxes {
+    None,
+    NewCharacter,
+    Condition,
+    Resist,
+    Immunity
+}
+
 export enum PlayerType {
     Player,
     Friendly,
@@ -12,9 +20,9 @@ interface ChacterContract {
     hp: number;
     ac: number;
     type: PlayerType;
-    conditions: string;
-    resistance: string;
-    immunity: string; 
+    conditions: boolean[];
+    resistance: boolean[];
+    immunity: boolean[]; 
     concentration: boolean;
     image: string;
 }
@@ -25,9 +33,9 @@ export const CharacterRecord = Record<ChacterContract>({
     hp: 0,
     ac: 0,
     type: PlayerType.Player,
-    conditions: "",
-    resistance: "",
-    immunity: "",
+    conditions: [],
+    resistance: [],
+    immunity: [],
     concentration: false,
     image: ""
 })

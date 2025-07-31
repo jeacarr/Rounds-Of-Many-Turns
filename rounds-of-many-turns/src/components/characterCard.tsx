@@ -7,18 +7,23 @@ import AddIcon from '@mui/icons-material/Add';
 import { Typography } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
 // import { red } from '@mui/material/colors';
-import { Character } from '../data/character/Character';
+import { Character, DialogBoxes } from '../data/character/Character';
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 // Interface for props state
 interface Props {
   character: Character;
   update: Function;
+  damageTypes: string[];
+  conditionList: string[];
+  openDialog: Function;
 }
 
-const CharacterCard: React.FC<Props> = ({character, update}) => {
+const CharacterCard: React.FC<Props> = ({character, update, conditionList, damageTypes, openDialog}) => {
   //DND kit consts
   const {
     attributes,
@@ -52,39 +57,46 @@ const CharacterCard: React.FC<Props> = ({character, update}) => {
                 <Typography variant="h5">{character.name}</Typography>
               </Grid>
               <Grid size={"auto"}>
-                <Fab size="small" color="error" aria-label="add" onClick={() => update(character.id, "hp", character.hp - 1)}>
-                  <RemoveIcon />
-                </Fab>
+                <IconButton size="small" color="error" aria-label="add" onClick={() => update(character.id, "hp", character.hp - 1)}>
+                  <RemoveIcon sx={{ color: "white", fontSize: "2rem", padding: ".2rem", background: "red", borderRadius: "1000rem"}}/>
+                </IconButton>
                 <Typography sx={{display: "inline", margin: "0 0.75rem", fontWeight: "bold"}}>HP: {character.hp}</Typography>
-                <Fab size="small" color="success" aria-label="add" onClick={() => update(character.id, "hp", character.hp + 1)}>
-                  <AddIcon />
-                </Fab>
+                <IconButton size="small"  aria-label="add" onClick={() => update(character.id, "hp", character.hp + 1)}>
+                  <AddIcon sx={{ color: "white", fontSize: "2rem", padding: ".2rem", background: "green", borderRadius: "1000rem"}}  />
+                </IconButton>
               </Grid>
               <Grid size={"auto"}>
                 <Typography style={{fontWeight: "bold"}}>AC {character.ac}</Typography>
               </Grid>
-              {character.conditions == "" ? "" :
-                <Grid size={"auto"}>
+                <Grid size={"auto"} onClick={() => openDialog(DialogBoxes.Condition, character.id)}>
                   <Typography style={{display: "inline"}}>Cond: </Typography>
-                  <Typography style={{fontWeight: "bold", display: "inline"}}>{character.conditions}</Typography>
+                    <Typography style={{fontWeight: "bold", display: "inline"}}>{character.conditions.map((v, k)=> (!v ? "" : conditionList[k] + " ")  )}</Typography>
+                  <IconButton size="small" color="primary" aria-label="add" >
+                    <AddCircleIcon /> 
+                  </IconButton >            
                 </Grid>
-              }
               <Grid container sx={{alignItems: "center"}}size={"auto"} spacing={0}>
                 <Checkbox onClick={() => update(character.id, "concentration", !character.concentration)} checked={character.concentration}/>
                 <Typography style={{display: "inline"}}>Concentration</Typography>
               </Grid>
-              {character.resistance == "" ? "" :
-                <Grid size={"auto"}>
+                <Grid size={"auto"} onClick={() => openDialog(DialogBoxes.Resist, character.id)}>
                   <Typography style={{display: "inline"}}>Resist: </Typography>
-                  <Typography style={{fontWeight: "bold", display: "inline"}}>{character.resistance}</Typography>
+                    {character.resistance.length < 1 ? "" :
+                        <Typography style={{fontWeight: "bold", display: "inline"}}>{character.resistance.map((v, k) => (!v ? "" : damageTypes[k] + " ") )}</Typography>
+                    }
+                  <IconButton size="small" color="primary" aria-label="add">
+                    <AddCircleIcon /> 
+                  </IconButton >   
                 </Grid>
-              } 
-              {character.immunity == "" ? "" :
-                <Grid size={"auto"}>
+                <Grid size={"auto"} onClick={() => openDialog(DialogBoxes.Immunity, character.id)}>
                   <Typography style={{display: "inline"}}>Immune: </Typography>
-                  <Typography style={{fontWeight: "bold", display: "inline"}}>{character.immunity}</Typography>
+                    {character.immunity.length < 1 ? "" :
+                      <Typography style={{fontWeight: "bold", display: "inline"}}>{character.immunity.map((v, k) => (!v ? "" : damageTypes[k] + " ") )}</Typography>
+                    }
+                  <IconButton size="small" color="primary" aria-label="add" >
+                    <AddCircleIcon /> 
+                  </IconButton >   
                 </Grid>
-              }
             </Grid>
           </Grid>
         </Box>
